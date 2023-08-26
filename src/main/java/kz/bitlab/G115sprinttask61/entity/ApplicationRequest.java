@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,8 +24,10 @@ public class ApplicationRequest {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String userName;
-  private String courseName;
-  private String commentary;
+  @ManyToOne
+  private Course course;
+  @OneToOne
+  private Comment comment;
   private String phone;
   private boolean handled; //обработано или нет
 }

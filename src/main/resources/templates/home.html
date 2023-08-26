@@ -7,8 +7,10 @@
 <body>
 <form action="/add-app-req" method="post">
   <input type="text" name="userName" placeholder="Insert user name"><br><br>
-  <input type="text" name="courseName" placeholder="Insert course name"><br><br>
-  <input type="text" name="commentary" placeholder="Insert commentary"><br><br>
+  <select name="course">
+    <option th:each="kurs : ${kursy}" th:text="${kurs.name}" th:value="${kurs.id}"></option>
+  </select>
+  <input type="text" name="comment.comment" placeholder="Insert commentary"><br><br>
   <input type="text" name="phone" placeholder="Insert phone"><br><br>
   <button>ADD NEW REQUEST</button>
 </form>
@@ -17,6 +19,7 @@
     <th>ID</th>
     <th>USER NAME</th>
     <th>COURSE NAME</th>
+    <th>COURSE DESCRIPTION</th>
     <th>COMMENTARY</th>
     <th>PHONE</th>
     <th>HANDLED</th>
@@ -26,8 +29,9 @@
     <tr th:each="appReq : ${zayavki}">
       <td th:text="${appReq.id}"></td>
       <td th:text="${appReq.userName}"></td>
-      <td th:text="${appReq.courseName}"></td>
-      <td th:text="${appReq.commentary}"></td>
+      <td th:text="${appReq.course.name}"></td>
+      <td th:text="${appReq.course.description}"></td>
+      <td th:text="${appReq.comment.comment}"></td>
       <td th:text="${appReq.phone}"></td>
       <td th:text="${appReq.handled == true ? 'Обработана' : 'Необработана'}"
           th:style="${appReq.handled == true ? 'color:green' : 'color:red'}"></td>
